@@ -1,1 +1,188 @@
-x
+# Сборка Android-приложения «Мой зал» из index.html
+name: APK
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Android project
+        env:
+          KS: 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
+        run: |
+          B=a/app/src/main
+          mkdir -p $B/java/ru/brainyex/gym $B/assets $B/res/mipmap-anydpi-v26 $B/res/drawable
+          cp index.html $B/assets/index.html
+          echo "$KS" | base64 -d > a/gym.jks
+          cat > a/settings.gradle <<'EOF'
+          pluginManagement { repositories { google(); mavenCentral(); gradlePluginPortal() } }
+          dependencyResolutionManagement { repositories { google(); mavenCentral() } }
+          rootProject.name = 'gym'
+          include ':app'
+          EOF
+          cat > a/build.gradle <<'EOF'
+          plugins { id 'com.android.application' version '8.5.2' apply false }
+          EOF
+          cat > a/app/build.gradle <<'EOF'
+          plugins { id 'com.android.application' }
+          def vc = Integer.parseInt(System.getenv('VC') ?: '1')
+          android {
+            namespace 'ru.brainyex.gym'
+            compileSdk 34
+            defaultConfig {
+              applicationId 'ru.brainyex.gym'
+              minSdk 26
+              targetSdk 34
+              versionCode vc
+              versionName "1." + vc
+            }
+            signingConfigs {
+              rel { storeFile file('../gym.jks'); storePassword 'gymgym123'; keyAlias 'gym'; keyPassword 'gymgym123' }
+            }
+            buildTypes { release { signingConfig signingConfigs.rel; minifyEnabled false } }
+            compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+          }
+          EOF
+          cat > $B/AndroidManifest.xml <<'EOF'
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+            <application android:label="Мой зал" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher"
+                android:theme="@android:style/Theme.Material.NoActionBar" android:allowBackup="true">
+              <activity android:name=".MainActivity" android:exported="true"
+                  android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode"
+                  android:windowSoftInputMode="adjustResize">
+                <intent-filter>
+                  <action android:name="android.intent.action.MAIN"/>
+                  <category android:name="android.intent.category.LAUNCHER"/>
+                </intent-filter>
+              </activity>
+            </application>
+          </manifest>
+          EOF
+          cat > $B/res/drawable/ic_bg.xml <<'EOF'
+          <vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+            <path android:pathData="M0,0 H108 V108 H0 Z" android:fillColor="#FF0B0E14"/>
+            <path android:pathData="M54,54 m-46,0 a46,46 0 1,0 92,0 a46,46 0 1,0 -92,0" android:fillColor="#141A2B"/>
+            <path android:pathData="M54,54 m-34,0 a34,34 0 1,0 68,0 a34,34 0 1,0 -68,0" android:fillColor="#1A1430"/>
+          </vector>
+          EOF
+          cat > $B/res/drawable/ic_fg.xml <<'EOF'
+          <vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+            <path android:pathData="M54,27 A27,27 0 1,1 53.99,27 Z" android:strokeColor="#22FF2BD6" android:strokeWidth="7.5" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M54,27 A27,27 0 1,1 53.99,27 Z" android:strokeColor="#55FF2BD6" android:strokeWidth="4.2" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M54,27 A27,27 0 1,1 53.99,27 Z" android:strokeColor="#FFFFD0F4" android:strokeWidth="1.9" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M33,43 H38 V65 H33 Z" android:strokeColor="#2222D3EE" android:strokeWidth="7.5" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M33,43 H38 V65 H33 Z" android:strokeColor="#5522D3EE" android:strokeWidth="4.2" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M33,43 H38 V65 H33 Z" android:strokeColor="#FFD9FBFF" android:strokeWidth="1.9" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M39,46.5 H44 V61.5 H39 Z" android:strokeColor="#2222D3EE" android:strokeWidth="7.5" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M39,46.5 H44 V61.5 H39 Z" android:strokeColor="#5522D3EE" android:strokeWidth="4.2" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M39,46.5 H44 V61.5 H39 Z" android:strokeColor="#FFD9FBFF" android:strokeWidth="1.9" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M44,54 H64" android:strokeColor="#2222D3EE" android:strokeWidth="7.5" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M44,54 H64" android:strokeColor="#5522D3EE" android:strokeWidth="4.2" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M44,54 H64" android:strokeColor="#FFD9FBFF" android:strokeWidth="1.9" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M64,46.5 H69 V61.5 H64 Z" android:strokeColor="#2222D3EE" android:strokeWidth="7.5" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M64,46.5 H69 V61.5 H64 Z" android:strokeColor="#5522D3EE" android:strokeWidth="4.2" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M64,46.5 H69 V61.5 H64 Z" android:strokeColor="#FFD9FBFF" android:strokeWidth="1.9" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M70,43 H75 V65 H70 Z" android:strokeColor="#2222D3EE" android:strokeWidth="7.5" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M70,43 H75 V65 H70 Z" android:strokeColor="#5522D3EE" android:strokeWidth="4.2" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+            <path android:pathData="M70,43 H75 V65 H70 Z" android:strokeColor="#FFD9FBFF" android:strokeWidth="1.9" android:strokeLineCap="round" android:strokeLineJoin="round" android:fillColor="#00000000"/>
+          </vector>
+          EOF
+          cat > $B/res/mipmap-anydpi-v26/ic_launcher.xml <<'EOF'
+          <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+            <background android:drawable="@drawable/ic_bg"/>
+            <foreground android:drawable="@drawable/ic_fg"/>
+          </adaptive-icon>
+          EOF
+          cat > $B/java/ru/brainyex/gym/MainActivity.java <<'EOF'
+          package ru.brainyex.gym;
+
+          import android.app.Activity;
+          import android.content.Intent;
+          import android.graphics.Color;
+          import android.net.Uri;
+          import android.os.Bundle;
+          import android.webkit.JavascriptInterface;
+          import android.webkit.WebResourceRequest;
+          import android.webkit.WebSettings;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+
+          public class MainActivity extends Activity {
+            private WebView web;
+
+            @Override
+            protected void onCreate(Bundle state) {
+              super.onCreate(state);
+              int bg = Color.parseColor("#0e1014");
+              getWindow().setStatusBarColor(bg);
+              getWindow().setNavigationBarColor(bg);
+              web = new WebView(this);
+              web.setBackgroundColor(bg);
+              WebSettings s = web.getSettings();
+              s.setJavaScriptEnabled(true);
+              s.setDomStorageEnabled(true);
+              s.setDatabaseEnabled(true);
+              s.setAllowFileAccess(true);
+              web.addJavascriptInterface(new Bridge(), "Android");
+              web.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView v, WebResourceRequest r) {
+                  Uri u = r.getUrl();
+                  if ("file".equals(u.getScheme())) return false;
+                  try { startActivity(new Intent(Intent.ACTION_VIEW, u)); } catch (Exception e) { }
+                  return true;
+                }
+              });
+              setContentView(web);
+              web.loadUrl("file:///android_asset/index.html");
+            }
+
+            @Override
+            public void onBackPressed() {
+              web.evaluateJavascript("(window.androidBack && window.androidBack()) ? '1' : '0'", v -> {
+                if (!"\"1\"".equals(v)) finish();
+              });
+            }
+
+            public class Bridge {
+              @JavascriptInterface
+              public void share(final String text) {
+                runOnUiThread(() -> {
+                  Intent i = new Intent(Intent.ACTION_SEND);
+                  i.setType("text/plain");
+                  i.putExtra(Intent.EXTRA_SUBJECT, "Мой зал — резервная копия");
+                  i.putExtra(Intent.EXTRA_TEXT, text);
+                  startActivity(Intent.createChooser(i, "Сохранить копию"));
+                });
+              }
+            }
+          }
+          EOF
+      - name: Build APK
+        env:
+          VC: ${{ github.run_number }}
+        run: |
+          cd a
+          gradle --no-daemon assembleRelease
+          cp app/build/outputs/apk/release/app-release.apk ../MoyZal-v1.${{ github.run_number }}.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: MoyZal-*.apk
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.${{ github.run_number }}
+          name: Мой зал 1.${{ github.run_number }}
+          files: MoyZal-*.apk
